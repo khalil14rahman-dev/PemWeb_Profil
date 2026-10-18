@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khalilur Rahman An Nafi</title>
+
+  <!-- Bootstrap 5.3.8 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    :root {
+      --red: #cf0000;
+      --soft-red: #fde6e6;
+      --blue: #0968c8;
+      --ink: #222222;
+      --line: #d2d6dc;
+      --bg: #f4f6f9;
+      --paper: #ffffff;
+      --muted: #5f6672;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 24px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--red);
+      color: #ffffff;
+      padding: 24px 28px;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .date-time {
+      text-align: right;
+      line-height: 1.3;
+    }
+
+    #current-date {
+      font-size: 12px;
+      display: block;
+    }
+
+    #live-clock {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .theme-toggle {
+      background: #ffffff;
+      color: var(--red);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .theme-toggle:hover {
+      background: #f8f8f8;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    /* NAVIGASI */
+    nav {
+      background-color: var(--soft-red);
+      padding: 12px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #a80000;
+      border-bottom: 1px solid #fad2d2;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #a80000;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.is-active {
+      background: var(--red);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* MAIN */
+    main {
+      padding: 28px;
+    }
+
+    section {
+      margin-bottom: 32px;
+      scroll-margin-top: 18px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    /* PROFILE SECTION */
+    .profile-section {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 4px;
+      background-color: #cbd5e1;
+      border: 1px solid #94a3b8;
+      display: block;
+    }
+
+    /* TOMBOL SEKUNDER */
+    .secondary-button {
+      background: #ffffff;
+      color: var(--red);
+      border: 1px solid var(--red);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .secondary-button:hover {
+      background: var(--soft-red);
+    }
+
+    /* HOBI LIST */
+    .hobby-list {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .hobby-list li {
+      margin-bottom: 6px;
+    }
+
+    /* TABEL JADWAL */
+    .schedule-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .schedule-tools label {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    select {
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      background: #ffffff;
+    }
+
+    .result-count {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--blue);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* TAUTAN */
+    .links-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .links-group a {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: var(--red);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .links-group a:hover {
+      background-color: #a80000;
+    }
+
+    /* FORM KONTAK */
+    form {
+      display: grid;
+      gap: 14px;
+      max-width: 500px;
+      margin-top: 8px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    input.input-error, textarea.input-error {
+      border-color: #c62828;
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.12);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .field-help {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .form-status {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .form-status.is-success {
+      display: block;
+      background: #e7f6ec;
+      color: #176b36;
+      border: 1px solid #a9d9b8;
+    }
+
+    .form-status.is-error {
+      display: block;
+      background: #fde8e8;
+      color: #9d1c1c;
+      border: 1px solid #efaaaa;
+    }
+
+    /* REACT PANEL STYLES */
+    .react-panel {
+      max-width: 720px;
+      border-top: 3px solid var(--blue);
+      padding-top: 16px;
+    }
+
+    .react-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .react-status {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .react-status.is-error {
+      color: #a61b1b;
+      font-weight: 700;
+    }
+
+    .collaborator-list {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .collaborator-item {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .collaborator-avatar {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .collaborator-copy {
+      min-width: 0;
+    }
+
+    .collaborator-copy h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .collaborator-copy p {
+      margin: 2px 0;
+      color: var(--muted);
+    }
+
+    .collaborator-copy a {
+      color: var(--blue);
+      overflow-wrap: anywhere;
+    }
+
+    /* BACK TO TOP BUTTON */
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #ffffff;
+      border: none;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-to-top.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* MODE GELAP */
+    body.dark-theme {
+      --bg: #12151a;
+      --paper: #20242b;
+      --ink: #f1f3f6;
+      --line: #47505e;
+      --muted: #a0aec0;
+    }
+
+    body.dark-theme nav {
+      background-color: #3a2023;
+      border-bottom-color: #674044;
+    }
+
+    body.dark-theme nav a {
+      color: #ffb7b7;
+    }
+
+    body.dark-theme h2 {
+      color: #f1f3f6;
+    }
+
+    body.dark-theme tbody tr:nth-child(even) {
+      background-color: #292f38;
+    }
+
+    body.dark-theme input,
+    body.dark-theme textarea,
+    body.dark-theme select {
+      background: #171a20;
+      color: #f1f3f6;
+      border-color: #596373;
+    }
+
+    body.dark-theme .secondary-button {
+      background: transparent;
+      color: #ffb7b7;
+      border-color: #ff8f8f;
+    }
+
+    body.dark-theme .react-status.is-error {
+      color: #ffb4b4;
+    }
+
+    body.dark-theme .collaborator-copy a {
+      color: #8fc3ff;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #262626;
+      color: #ffffff;
+      padding: 16px 28px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+        border: none;
+      }
+
+      .profile-section {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        width: 140px;
+        height: 140px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .date-time {
+        text-align: left;
+      }
+
+      .react-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .react-toolbar .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-content">
+        <div>
+          <h1>Khalilur Rahman An Nafi</h1>
+        </div>
+        <div class="header-tools">
+          <div class="date-time">
+            <span id="current-date">Memuat tanggal...</span>
+            <span id="live-clock">00:00:00</span>
+          </div>
+          <button id="theme-toggle" class="theme-toggle btn btn-light" type="button" aria-pressed="false">Mode Gelap</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav aria-label="Navigasi Utama">
+      <a class="is-active" href="#tentang">Tentang</a> &middot; 
+      <a href="#hobi">Hobi</a> &middot; 
+      <a href="#jadwal">Jadwal</a> &middot; 
+      <a href="#tautan">Tautan</a> &middot; 
+      <a href="#kolaborator">Kolaborator</a> &middot; 
+      <a href="#kontak">Kontak</a>
+    </nav>
+
+    <!-- MAIN -->
+    <main>
+
+      <!-- TENTANG DIRI -->
+      <section id="tentang" class="profile-section">
+        <img 
+          class="profile-photo transition duration-300 hover:scale-[1.03] hover:shadow-xl" 
+          src="Khalilgtng.jpg" 
+          alt="Foto diri Khalilur Rahman An Nafi"
+        >
+        <div>
+          <h2>Tentang Saya</h2>
+          <p>
+            Saya adalah mahasiswa Rekayasa Perangkat Lunak tahun kedua di Telkom University dengan ketertarikan yang kuat pada desain UI/UX serta keterampilan yang terus berkembang dalam pengembangan web dan aplikasi <em>mobile</em>. Saat ini saya sedang mempelajari JavaScript, HTML, dan CSS, serta memiliki pengalaman dalam pemrograman Java dan perancangan desain aplikasi menggunakan Figma.
+          </p>
+
+          <!-- Komponen Bootstrap -->
+          <div class="alert alert-primary alert-dismissible fade show mt-3" role="status">
+            <strong>Status:</strong> Terbuka untuk kolaborasi proyek web.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+          </div>
+
+          <h3 class="h6 mt-4 mb-2 font-bold">Teknologi yang sedang dipelajari</h3>
+          <!-- Utility Tailwind CSS -->
+          <div class="flex flex-wrap gap-2" aria-label="Daftar teknologi">
+            <span class="rounded-md bg-red-100 px-3 py-1 text-sm font-semibold text-red-800 ring-1 ring-inset ring-red-700/20">HTML5</span>
+            <span class="rounded-md bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-800 ring-1 ring-inset ring-sky-700/20">CSS3</span>
+            <span class="rounded-md bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800 ring-1 ring-inset ring-amber-700/20">JavaScript</span>
+            <span class="rounded-md bg-violet-100 px-3 py-1 text-sm font-semibold text-violet-800 ring-1 ring-inset ring-violet-700/20">Bootstrap</span>
+            <span class="rounded-md bg-cyan-100 px-3 py-1 text-sm font-semibold text-cyan-800 ring-1 ring-inset ring-cyan-700/20">Tailwind CSS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOBI SAYA -->
+      <section id="hobi">
+        <h2>Hobi &amp; Minat</h2>
+        <p>Berikut adalah beberapa kegiatan dan hobi yang biasa saya lakukan di waktu luang:</p>
+        <button id="toggle-hobbies" class="secondary-button btn btn-outline-danger btn-sm" type="button" aria-expanded="true">Sembunyikan Hobi</button>
+        <ul id="hobby-list" class="hobby-list">
+          <li><strong>Eksplorasi Desain UI/UX:</strong> Merancang antarmuka aplikasi yang interaktif dan nyaman digunakan menggunakan Figma.</li>
+          <li><strong>Mempelajari Pemrograman Web:</strong> Mengembangkan kemampuan dasar HTML, CSS, dan JavaScript untuk membangun website yang responsif.</li>
+          <li><strong>Membaca Artikel &amp; Dokumentasi Teknologi:</strong> Mengikuti perkembangan tren industri <em>software engineering</em> dan praktik terbaik dalam pengodean.</li>
+          <li><strong>Eksplorasi Bahasa Pemrograman:</strong> Mengasah logika pemrograman berbasis objek melalui bahasa Java.</li>
+          <li><strong>Olahraga Futsal &amp; Badminton:</strong> Menjaga kebugaran fisik dan menjalin kebersamaan bersama teman-teman.</li>
+          <li><strong>Mendengarkan Musik:</strong> Menemani sesi belajar dan coding agar tetap fokus dan produktif.</li>
+        </ul>
+      </section>
+
+      <!-- TABEL JADWAL KULIAH -->
+      <section id="jadwal">
+        <h2>Jadwal Kuliah</h2>
+        <div class="schedule-tools">
+          <button id="toggle-schedule" class="secondary-button btn btn-outline-danger btn-sm" type="button" aria-expanded="true">Sembunyikan Tabel</button>
+          <div>
+            <label for="schedule-filter">Filter hari: </label>
+            <select id="schedule-filter" class="form-select form-select-sm">
+              <option value="semua">Semua Hari</option>
+              <option value="Senin">Senin</option>
+              <option value="Selasa">Selasa</option>
+              <option value="Rabu">Rabu</option>
+              <option value="Kamis">Kamis</option>
+              <option value="Jumat">Jumat</option>
+            </select>
+          </div>
+          <span id="schedule-result" class="result-count">11 jadwal ditampilkan</span>
+        </div>
+
+        <div id="schedule-table-wrapper" class="table-wrapper">
+          <table class="table table-striped table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Hari</th>
+                <th scope="col">Mata Kuliah</th>
+                <th scope="col">Jam</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body">
+              <!-- SENIN -->
+              <tr class="schedule-row" data-day="Senin">
+                <td>Senin</td>
+                <td>Penjaminan Mutu Perangkat Lunak</td>
+                <td>07.30 - 10.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Senin">
+                <td>Senin</td>
+                <td>Manajemen Proyek</td>
+                <td>10.30 - 13.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Senin">
+                <td>Senin</td>
+                <td>Perancangan Pemrograman Web</td>
+                <td>15.30 - 18.30</td>
+              </tr>
+
+              <!-- SELASA -->
+              <tr class="schedule-row" data-day="Selasa">
+                <td>Selasa</td>
+                <td>Mobile Programming</td>
+                <td>10.30 - 13.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Selasa">
+                <td>Selasa</td>
+                <td>Pemrograman Web</td>
+                <td>14.30 - 17.30</td>
+              </tr>
+
+              <!-- RABU -->
+              <tr class="schedule-row" data-day="Rabu">
+                <td>Rabu</td>
+                <td>Wawasan Global TIK</td>
+                <td>08.30 - 10.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Rabu">
+                <td>Rabu</td>
+                <td>Kewirausahaan</td>
+                <td>15.30 - 17.30</td>
+              </tr>
+
+              <!-- KAMIS -->
+              <tr class="schedule-row" data-day="Kamis">
+                <td>Kamis</td>
+                <td>Pengalaman Pengguna</td>
+                <td>07.30 - 10.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Kamis">
+                <td>Kamis</td>
+                <td>Mobile Programming</td>
+                <td>12.30 - 15.30</td>
+              </tr>
+              <tr class="schedule-row" data-day="Kamis">
+                <td>Kamis</td>
+                <td>TPLM</td>
+                <td>15.30 - 17.30</td>
+              </tr>
+
+              <!-- JUMAT -->
+              <tr class="schedule-row" data-day="Jumat">
+                <td>Jumat</td>
+                <td>Kewarganegaraan</td>
+                <td>09.30 - 11.30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAUTAN LINKEDIN / GITHUB -->
+      <section id="tautan">
+        <h2>Tautan Profil</h2>
+        <div class="links-group">
+          <a class="btn btn-danger" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-danger" href="https://github.com/khalil14rahman-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </section>
+
+      <!-- SEKSI KOLABORATOR (REACT + AJAX) -->
+      <section id="kolaborator">
+        <h2>Kolaborator Terbaru</h2>
+        <p>Daftar kontak komunitas dapat dimuat tanpa membuka ulang halaman.</p>
+        <div id="react-collaborators" class="react-panel">
+          <p class="text-secondary mb-0">Memuat komponen React...</p>
+        </div>
+        <noscript>
+          <p class="alert alert-warning mt-3">JavaScript perlu diaktifkan untuk menampilkan daftar kolaborator.</p>
+        </noscript>
+      </section>
+
+      <!-- FORM KONTAK -->
+      <section id="kontak">
+        <h2>Kontak Saya</h2>
+        <form id="contact-form" action="#" method="post" novalidate>
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input class="form-control" type="text" id="nama" name="nama" placeholder="Masukkan nama" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="nama@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pesan">Pesan</label>
+            <textarea class="form-control" id="pesan" name="pesan" maxlength="300" placeholder="Tulis pesanmu di sini" required></textarea>
+            <span id="character-count" class="field-help">0 / 300 karakter</span>
+          </div>
+
+          <button class="btn btn-danger" type="submit">Kirim</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      &copy; <span id="current-year">2026</span> Khalilur Rahman An Nafi. Semua hak dilindungi.
+    </footer>
+
+  </div>
+
+  <button id="back-to-top" class="back-to-top" type="button" title="Kembali ke atas">&uarr;</button>
+
+  <!-- LOAD SCRIPT EXTERNAL (Bootstrap, jQuery, React) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+  <script>
+    // JavaScript murni: jam real-time, tahun otomatis, dan mode warna.
+    const dateElement = document.getElementById("current-date");
+    const clockElement = document.getElementById("live-clock");
+    const themeButton = document.getElementById("theme-toggle");
+
+    function updateDateTime() {
+      const now = new Date();
+      dateElement.textContent = new Intl.DateTimeFormat("id-ID", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(now);
+      clockElement.textContent = new Intl.DateTimeFormat("id-ID", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(now);
+      document.getElementById("current-year").textContent = now.getFullYear();
+    }
+
+    function applyTheme(useDarkTheme) {
+      document.body.classList.toggle("dark-theme", useDarkTheme);
+      document.documentElement.setAttribute("data-bs-theme", useDarkTheme ? "dark" : "light");
+      themeButton.textContent = useDarkTheme ? "Mode Terang" : "Mode Gelap";
+      themeButton.setAttribute("aria-pressed", String(useDarkTheme));
+    }
+
+    let savedTheme = "light";
+    try {
+      savedTheme = localStorage.getItem("profile-theme") || "light";
+    } catch (error) {
+      savedTheme = "light";
+    }
+
+    applyTheme(savedTheme === "dark");
+    themeButton.addEventListener("click", function () {
+      const useDarkTheme = !document.body.classList.contains("dark-theme");
+      applyTheme(useDarkTheme);
+
+      try {
+        localStorage.setItem("profile-theme", useDarkTheme ? "dark" : "light");
+      } catch (error) {
+        // Tema tetap bekerja walaupun penyimpanan browser tidak tersedia.
+      }
+    });
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    // JavaScript murni: validasi form dan pesan jika data belum lengkap.
+    const contactForm = document.getElementById("contact-form");
+    const nameInput = document.getElementById("nama");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("pesan");
+    const formStatus = document.getElementById("form-status");
+
+    function showFormStatus(message, statusClass) {
+      const bootstrapAlertClass = statusClass === "is-success" ? "alert-success" : "alert-danger";
+      formStatus.className = `form-status alert ${bootstrapAlertClass} ${statusClass}`;
+      formStatus.textContent = message;
+      formStatus.style.display = "block";
+    }
+
+    function markInvalid(input) {
+      input.classList.add("input-error", "is-invalid");
+      input.setAttribute("aria-invalid", "true");
+    }
+
+    [nameInput, emailInput, messageInput].forEach(function (input) {
+      input.addEventListener("input", function () {
+        input.classList.remove("input-error", "is-invalid");
+        input.removeAttribute("aria-invalid");
+      });
+    });
+
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
+
+      [nameInput, emailInput, messageInput].forEach(function (input) {
+        input.classList.remove("input-error", "is-invalid");
+        input.removeAttribute("aria-invalid");
+      });
+
+      if (!name || !email) {
+        if (!name) markInvalid(nameInput);
+        if (!email) markInvalid(emailInput);
+        showFormStatus("Nama dan email wajib diisi.", "is-error");
+        (!name ? nameInput : emailInput).focus();
+        return;
+      }
+
+      if (!emailInput.validity.valid) {
+        markInvalid(emailInput);
+        showFormStatus("Format email belum benar.", "is-error");
+        emailInput.focus();
+        return;
+      }
+
+      if (!message) {
+        markInvalid(messageInput);
+        showFormStatus("Pesan wajib diisi.", "is-error");
+        messageInput.focus();
+        return;
+      }
+
+      showFormStatus(`Terima kasih, ${name}! Pesanmu sudah diterima.`, "is-success");
+      contactForm.reset();
+      document.getElementById("character-count").textContent = "0 / 300 karakter";
+    });
+
+    // jQuery: navigasi, filter, animasi elemen, dan interaksi form.
+    $(function () {
+      const $navLinks =$("nav a[href^='#']");
+      const $sections =$("main section[id]");
+      const $message =$("#pesan");
+      const $backToTop =$("#back-to-top");
+      const animationDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 450;
+
+      $navLinks.on("click", function (event) {
+        const $target = $($(this).attr("href"));
+
+        if ($target.length) {
+          event.preventDefault();
+          $("html, body").stop().animate(
+            { scrollTop: $target.offset().top - 18 },
+            animationDuration
+          );
+        }
+      });
+
+      function updateActiveNavigation() {
+        const scrollPosition = $(window).scrollTop() + 120;
+        let activeId = $sections.first().attr("id");
+
+        $sections.each(function () {
+          if ($(this).offset().top <= scrollPosition) {
+            activeId = this.id;
+          }
+        });
+
+        $navLinks.removeClass("is-active").removeAttr("aria-current");
+        $navLinks
+          .filter(`[href='#${activeId}']`)
+          .addClass("is-active")
+          .attr("aria-current", "page");
+      }
+
+      $(window).on("scroll", function () {
+        updateActiveNavigation();
+        $backToTop.toggleClass("is-visible", $(this).scrollTop() > 300);
+      });
+      updateActiveNavigation();
+
+      $backToTop.on("click", function () {
+        $("html, body").stop().animate({ scrollTop: 0 }, animationDuration);
+      });
+
+      $("#toggle-hobbies").on("click", function () {
+        const isExpanded = $(this).attr("aria-expanded") === "true";
+        $("#hobby-list").stop(true, true).slideToggle(animationDuration / 2);
+        $(this)
+          .attr("aria-expanded", String(!isExpanded))
+          .text(isExpanded ? "Tampilkan Hobi" : "Sembunyikan Hobi");
+      });
+
+      $("#schedule-filter").on("change", function () {
+        const selectedDay = $(this).val();
+        const $rows =$("#schedule-body .schedule-row");
+        const $matchingRows = selectedDay === "semua"
+          ? $rows
+          : $rows.filter(`[data-day='${selectedDay}']`);
+
+        $rows.hide();
+        $matchingRows.fadeIn(animationDuration / 2);$("#schedule-result").text(`${$matchingRows.length} jadwal ditampilkan`);
+      });
+
+      // Versi jQuery dari efek menampilkan dan menyembunyikan tabel jadwal.
+      $("#toggle-schedule").on("click", function () {
+        const isExpanded = $(this).attr("aria-expanded") === "true";
+        $("#schedule-table-wrapper")
+          .stop(true, true)
+          .slideToggle(animationDuration / 2);
+        $(this)
+          .attr("aria-expanded", String(!isExpanded))
+          .text(isExpanded ? "Tampilkan Tabel" : "Sembunyikan Tabel");
+      });
+
+      $message.on("input", function () {
+        $("#character-count").text(`${this.value.length} / 300 karakter`);
+      });
+
+    });
+
+    // React mengatur tampilan dan state; jQuery AJAX mengambil data tanpa reload.
+    function mountCollaboratorWidget() {
+      const mountNode = document.getElementById("react-collaborators");
+
+      if (!mountNode || !window.React || !window.ReactDOM) {
+        if (mountNode) {
+          mountNode.innerHTML = '<p class="alert alert-danger mb-0">React gagal dimuat. Periksa koneksi internet.</p>';
+        }
+        return;
+      }
+
+      const element = React.createElement;
+
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .slice(0, 2)
+          .map(function (part) { return part.charAt(0); })
+          .join("")
+          .toUpperCase();
+      }
+
+      function CollaboratorWidget() {
+        const [requestState, setRequestState] = React.useState({
+          status: "idle",
+          collaborators: [],
+          error: ""
+        });
+
+        function loadCollaborators() {
+          if (!window.jQuery) {
+            setRequestState({
+              status: "error",
+              collaborators: [],
+              error: "jQuery AJAX gagal dimuat. Periksa koneksi internet."
+            });
+            return;
+          }
+
+          setRequestState({ status: "loading", collaborators: [], error: "" });
+
+          window.jQuery.ajax({
+            url: "https://jsonplaceholder.typicode.com/users",
+            method: "GET",
+            dataType: "json",
+            data: { _limit: 3 },
+            timeout: 10000
+          })
+            .done(function (users) {
+              setRequestState({
+                status: "success",
+                collaborators: Array.isArray(users) ? users.slice(0, 3) : [],
+                error: ""
+              });
+            })
+            .fail(function () {
+              setRequestState({
+                status: "error",
+                collaborators: [],
+                error: "Data belum berhasil dimuat. Periksa koneksi lalu coba lagi."
+              });
+            });
+        }
+
+        const isLoading = requestState.status === "loading";
+        const toolbar = element("div", { className: "react-toolbar", key: "toolbar" }, [
+          element("span", { className: "badge text-bg-primary", key: "badge" }, "React + AJAX"),
+          element(
+            "button",
+            {
+              className: "btn btn-primary",
+              type: "button",
+              disabled: isLoading,
+              onClick: loadCollaborators,
+              key: "button"
+            },
+            isLoading ? "Memuat..." : "Muat Kolaborator"
+          )
+        ]);
+
+        let content = element(
+          "p",
+          { className: "react-status", role: "status", key: "idle" },
+          "Belum ada data kolaborator yang dimuat."
+        );
+
+        if (isLoading) {
+          content = element("div", { className: "react-status", role: "status", key: "loading" }, [
+            element("span", {
+              className: "spinner-border spinner-border-sm me-2",
+              "aria-hidden": "true",
+              key: "spinner"
+            }),
+            "Mengambil data melalui AJAX..."
+          ]);
+        }
+
+        if (requestState.status === "error") {
+          content = element(
+            "p",
+            { className: "react-status is-error", role: "alert", key: "error" },
+            requestState.error
+          );
+        }
+
+        if (requestState.status === "success") {
+          content = element("div", { key: "success" }, [
+            element(
+              "p",
+              { className: "react-status", role: "status", key: "status" },
+              `${requestState.collaborators.length} kolaborator berhasil dimuat.`
+            ),
+            element(
+              "ul",
+              { className: "collaborator-list", key: "list" },
+              requestState.collaborators.map(function (person) {
+                return element("li", { className: "collaborator-item", key: person.id }, [
+                  element(
+                    "span",
+                    { className: "collaborator-avatar", "aria-hidden": "true", key: "avatar" },
+                    getInitials(person.name)
+                  ),
+                  element("div", { className: "collaborator-copy", key: "copy" }, [
+                    element("h3", { key: "name" }, person.name),
+                    element(
+                      "p",
+                      { key: "company" },
+                      person.company && person.company.name ? person.company.name : "Komunitas Web"
+                    ),
+                    element(
+                      "a",
+                      { href: `mailto:${person.email}`, key: "email" },
+                      person.email
+                    )
+                  ])
+                ]);
+              })
+            )
+          ]);
+        }
+
+        return element(React.Fragment, null, toolbar, content);
+      }
+
+      const reactRoot = ReactDOM.createRoot(mountNode);
+      reactRoot.render(element(React.StrictMode, null, element(CollaboratorWidget)));
+    }
+
+    mountCollaboratorWidget();
+  </script>
+</body>
+</html>
