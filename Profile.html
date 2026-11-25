@@ -547,11 +547,11 @@
 
     <!-- NAV -->
     <nav aria-label="Navigasi Utama">
-      <a class="is-active" href="#tentang">Tentang</a> &middot; 
-      <a href="#hobi">Hobi</a> &middot; 
-      <a href="#jadwal">Jadwal</a> &middot; 
-      <a href="#tautan">Tautan</a> &middot; 
-      <a href="#kolaborator">Kolaborator</a> &middot; 
+      <a class="is-active" href="#tentang">Tentang</a> &middot;
+      <a href="#hobi">Hobi</a> &middot;
+      <a href="#jadwal">Jadwal</a> &middot;
+      <a href="#tautan">Tautan</a> &middot;
+      <a href="#kolaborator">Kolaborator</a> &middot;
       <a href="#kontak">Kontak</a>
     </nav>
 
@@ -560,9 +560,9 @@
 
       <!-- TENTANG DIRI -->
       <section id="tentang" class="profile-section">
-        <img 
-          class="profile-photo transition duration-300 hover:scale-[1.03] hover:shadow-xl" 
-          src="Khalilgtng.jpg" 
+        <img
+          class="profile-photo transition duration-300 hover:scale-[1.03] hover:shadow-xl"
+          src="Khalilgtng.jpg"
           alt="Foto diri Khalilur Rahman An Nafi"
         >
         <div>
@@ -604,7 +604,7 @@
         </ul>
       </section>
 
-      <!-- TABEL JADWAL KULIAH -->
+      <!-- TABEL JADWAL KULIAH (DILAYANI API NESTJS + REACT) -->
       <section id="jadwal">
         <h2>Jadwal Kuliah</h2>
         <div class="schedule-tools">
@@ -620,7 +620,7 @@
               <option value="Jumat">Jumat</option>
             </select>
           </div>
-          <span id="schedule-result" class="result-count">11 jadwal ditampilkan</span>
+          <span id="schedule-result" class="result-count">Memuat jadwal...</span>
         </div>
 
         <div id="schedule-table-wrapper" class="table-wrapper">
@@ -632,72 +632,7 @@
                 <th scope="col">Jam</th>
               </tr>
             </thead>
-            <tbody id="schedule-body">
-              <!-- SENIN -->
-              <tr class="schedule-row" data-day="Senin">
-                <td>Senin</td>
-                <td>Penjaminan Mutu Perangkat Lunak</td>
-                <td>07.30 - 10.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Senin">
-                <td>Senin</td>
-                <td>Manajemen Proyek</td>
-                <td>10.30 - 13.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Senin">
-                <td>Senin</td>
-                <td>Perancangan Pemrograman Web</td>
-                <td>15.30 - 18.30</td>
-              </tr>
-
-              <!-- SELASA -->
-              <tr class="schedule-row" data-day="Selasa">
-                <td>Selasa</td>
-                <td>Mobile Programming</td>
-                <td>10.30 - 13.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Selasa">
-                <td>Selasa</td>
-                <td>Pemrograman Web</td>
-                <td>14.30 - 17.30</td>
-              </tr>
-
-              <!-- RABU -->
-              <tr class="schedule-row" data-day="Rabu">
-                <td>Rabu</td>
-                <td>Wawasan Global TIK</td>
-                <td>08.30 - 10.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Rabu">
-                <td>Rabu</td>
-                <td>Kewirausahaan</td>
-                <td>15.30 - 17.30</td>
-              </tr>
-
-              <!-- KAMIS -->
-              <tr class="schedule-row" data-day="Kamis">
-                <td>Kamis</td>
-                <td>Pengalaman Pengguna</td>
-                <td>07.30 - 10.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Kamis">
-                <td>Kamis</td>
-                <td>Mobile Programming</td>
-                <td>12.30 - 15.30</td>
-              </tr>
-              <tr class="schedule-row" data-day="Kamis">
-                <td>Kamis</td>
-                <td>TPLM</td>
-                <td>15.30 - 17.30</td>
-              </tr>
-
-              <!-- JUMAT -->
-              <tr class="schedule-row" data-day="Jumat">
-                <td>Jumat</td>
-                <td>Kewarganegaraan</td>
-                <td>09.30 - 11.30</td>
-              </tr>
-            </tbody>
+            <tbody id="schedule-body"></tbody>
           </table>
         </div>
       </section>
@@ -882,12 +817,12 @@
       document.getElementById("character-count").textContent = "0 / 300 karakter";
     });
 
-    // jQuery: navigasi, filter, animasi elemen, dan interaksi form.
+    // jQuery: navigasi, animasi elemen, dan interaksi form.
     $(function () {
-      const $navLinks =$("nav a[href^='#']");
-      const $sections =$("main section[id]");
-      const $message =$("#pesan");
-      const $backToTop =$("#back-to-top");
+      const $navLinks = $("nav a[href^='#']");
+      const $sections = $("main section[id]");
+      const $message = $("#pesan");
+      const $backToTop = $("#back-to-top");
       const animationDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 450;
 
       $navLinks.on("click", function (event) {
@@ -937,18 +872,6 @@
           .text(isExpanded ? "Tampilkan Hobi" : "Sembunyikan Hobi");
       });
 
-      $("#schedule-filter").on("change", function () {
-        const selectedDay = $(this).val();
-        const $rows =$("#schedule-body .schedule-row");
-        const $matchingRows = selectedDay === "semua"
-          ? $rows
-          : $rows.filter(`[data-day='${selectedDay}']`);
-
-        $rows.hide();
-        $matchingRows.fadeIn(animationDuration / 2);$("#schedule-result").text(`${$matchingRows.length} jadwal ditampilkan`);
-      });
-
-      // Versi jQuery dari efek menampilkan dan menyembunyikan tabel jadwal.
       $("#toggle-schedule").on("click", function () {
         const isExpanded = $(this).attr("aria-expanded") === "true";
         $("#schedule-table-wrapper")
@@ -962,8 +885,123 @@
       $message.on("input", function () {
         $("#character-count").text(`${this.value.length} / 300 karakter`);
       });
-
     });
+
+    // React mengambil jadwal dari API NestJS dan merender baris tabel dengan .map().
+    function mountScheduleWidget() {
+      const scheduleBodyNode = document.getElementById("schedule-body");
+      const filterSelect = document.getElementById("schedule-filter");
+      const resultCount = document.getElementById("schedule-result");
+
+      if (!scheduleBodyNode || !window.React || !window.ReactDOM) {
+        return;
+      }
+
+      const element = React.createElement;
+
+      function ScheduleRows({ selectedDay }) {
+        const [state, setState] = React.useState({
+          status: "loading",
+          items: [],
+          error: ""
+        });
+
+        React.useEffect(() => {
+          let isMounted = true;
+          const endpoint =
+            selectedDay && selectedDay !== "semua"
+              ? `http://localhost:3000/api/jadwal/${encodeURIComponent(selectedDay)}`
+              : "http://localhost:3000/api/jadwal";
+
+          setState({ status: "loading", items: [], error: "" });
+          if (resultCount) {
+            resultCount.textContent = "Memuat jadwal...";
+          }
+
+          fetch(endpoint)
+            .then(async (res) => {
+              if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                const errMessage = Array.isArray(errData.message)
+                  ? errData.message.join(", ")
+                  : errData.message;
+                throw new Error(errMessage || `HTTP ${res.status}`);
+              }
+              return res.json();
+            })
+            .then((data) => {
+              if (!isMounted) return;
+              const list = Array.isArray(data) ? data : [];
+              setState({ status: "success", items: list, error: "" });
+              if (resultCount) {
+                resultCount.textContent = `${list.length} jadwal ditampilkan`;
+              }
+            })
+            .catch((err) => {
+              if (!isMounted) return;
+              setState({
+                status: "error",
+                items: [],
+                error: err.message || "Gagal mengambil data dari API NestJS."
+              });
+              if (resultCount) {
+                resultCount.textContent = "0 jadwal ditampilkan";
+              }
+            });
+
+          return () => {
+            isMounted = false;
+          };
+        }, [selectedDay]);
+
+        if (state.status === "loading") {
+          return element(
+            "tr",
+            null,
+            element("td", { colSpan: 3 }, "Memuat jadwal dari http://localhost:3000/api/jadwal...")
+          );
+        }
+
+        if (state.status === "error") {
+          return element(
+            "tr",
+            null,
+            element("td", { colSpan: 3 }, `Gagal memuat jadwal: ${state.error}`)
+          );
+        }
+
+        if (state.items.length === 0) {
+          return element(
+            "tr",
+            null,
+            element("td", { colSpan: 3 }, "Tidak ada jadwal untuk hari yang dipilih.")
+          );
+        }
+
+        return state.items.map((item) =>
+          element("tr", { className: "schedule-row", key: item.id }, [
+            element("td", { key: "hari" }, item.hari),
+            element("td", { key: "mk" }, item.matakuliah),
+            element("td", { key: "jam" }, item.jam)
+          ])
+        );
+      }
+
+      const root = ReactDOM.createRoot(scheduleBodyNode);
+
+      function renderSchedule() {
+        const currentDay = filterSelect ? filterSelect.value : "semua";
+        root.render(element(ScheduleRows, { selectedDay: currentDay }));
+      }
+
+      renderSchedule();
+
+      if (filterSelect) {
+        filterSelect.addEventListener("change", renderSchedule);
+      }
+    }
+
+    mountScheduleWidget();
 
     // React mengatur tampilan dan state; jQuery AJAX mengambil data tanpa reload.
     function mountCollaboratorWidget() {
